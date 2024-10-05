@@ -11,6 +11,7 @@ import org.example.testtask1.repository.PasteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class PasteServiceImpl implements PasteService {
@@ -21,25 +22,21 @@ public class PasteServiceImpl implements PasteService {
         PasteBox pasteBox = pasteRepository.findById(hash).orElseThrow(() -> new ElementNotFoundException(hash));
 
         return new GetPasteDtoResponse(pasteBox.getHash(),
-                pasteBox.getPaste(),
-                pasteBox.getExpirationTime(),
-                pasteBox.getAccessRestriction());
+                pasteBox.getPaste());
     }
 
     @Override
     public List<GetPasteDtoResponse> getAll() {
         List<PasteBox> pasteBoxList = pasteRepository.findAll();
-        if(pasteBoxList.isEmpty()){
-            throw  new ListNotFoundException();
+        if (pasteBoxList.isEmpty()) {
+            throw new ListNotFoundException();
         }
 
         return pasteBoxList.stream()
                 .limit(10)
                 .map(paste ->
                         new GetPasteDtoResponse(paste.getHash(),
-                                paste.getPaste(),
-                                paste.getExpirationTime(),
-                                paste.getAccessRestriction()))
+                                paste.getPaste()))
                 .toList();
     }
 

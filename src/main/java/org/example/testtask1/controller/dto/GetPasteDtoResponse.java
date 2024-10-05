@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.testtask1.entity.AccessRestriction;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +12,4 @@ import org.example.testtask1.entity.AccessRestriction;
 public class GetPasteDtoResponse {
     private String hash;
     private String paste;
-    private Long expirationTime;
-    private AccessRestriction accessRestriction;
 }
