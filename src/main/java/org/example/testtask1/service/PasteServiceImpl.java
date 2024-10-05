@@ -8,12 +8,9 @@ import org.example.testtask1.entity.PasteBox;
 import org.example.testtask1.exception.ElementNotFoundException;
 import org.example.testtask1.exception.ListNotFoundException;
 import org.example.testtask1.repository.PasteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class PasteServiceImpl implements PasteService {
@@ -43,7 +40,7 @@ public class PasteServiceImpl implements PasteService {
                                 paste.getPaste(),
                                 paste.getExpirationTime(),
                                 paste.getAccessRestriction()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
