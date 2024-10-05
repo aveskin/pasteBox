@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GetPasteDtoResponse {
-    private String hash;
+    private String url;
     private String paste;
 }

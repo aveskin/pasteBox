@@ -24,8 +24,8 @@ public class PasteController {
         SavePasteDtoResponse paste = pasteService.save(savePasteDtoRequest);
         return ResponseEntity
                 .created(uriComponentsBuilder
-                        .replacePath("/paste-api/{hash}")
-                        .build(Map.of("hash", paste.getHash())))
+                        .replacePath("/paste-api/{url}")
+                        .build(Map.of("url", paste.getUrl())))
                 .body(paste);
     }
 

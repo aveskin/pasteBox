@@ -12,6 +12,6 @@ import org.example.testtask1.entity.AccessRestriction;
 @Setter
 public class SavePasteDtoRequest {
     private String paste;
-    private Long expirationTime;
+    private Long expirationTimeMin;
     private AccessRestriction accessRestriction;
 }
