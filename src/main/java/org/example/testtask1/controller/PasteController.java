@@ -1,5 +1,6 @@
 package org.example.testtask1.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.testtask1.controller.dto.GetPasteDtoResponse;
 import org.example.testtask1.controller.dto.SavePasteDtoRequest;
@@ -20,7 +21,8 @@ public class PasteController {
 
     @PostMapping("/save")
     public ResponseEntity<SavePasteDtoResponse> savePaste(
-            @RequestBody SavePasteDtoRequest savePasteDtoRequest, UriComponentsBuilder uriComponentsBuilder){
+            @RequestBody @Valid SavePasteDtoRequest savePasteDtoRequest, UriComponentsBuilder uriComponentsBuilder){
+
         SavePasteDtoResponse paste = pasteService.save(savePasteDtoRequest);
         return ResponseEntity
                 .created(uriComponentsBuilder
