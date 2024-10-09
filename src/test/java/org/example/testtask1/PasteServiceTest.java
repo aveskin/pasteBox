@@ -6,7 +6,7 @@ import org.example.testtask1.exception.ElementNotFoundException;
 import org.example.testtask1.exception.LifeExpiredException;
 import org.example.testtask1.exception.ListNotFoundException;
 import org.example.testtask1.repository.PasteRepository;
-import org.example.testtask1.service.PasteServiceImpl;
+import org.example.testtask1.service.main.PasteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

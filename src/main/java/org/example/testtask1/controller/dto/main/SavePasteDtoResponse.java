@@ -1,4 +1,4 @@
-package org.example.testtask1.controller.dto;
+package org.example.testtask1.controller.dto.main;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

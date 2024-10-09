@@ -1,10 +1,10 @@
-package org.example.testtask1.service;
+package org.example.testtask1.service.main;
 
 import lombok.RequiredArgsConstructor;
 import org.example.testtask1.config.AppConfig;
-import org.example.testtask1.controller.dto.GetPasteDtoResponse;
-import org.example.testtask1.controller.dto.SavePasteDtoRequest;
-import org.example.testtask1.controller.dto.SavePasteDtoResponse;
+import org.example.testtask1.controller.dto.main.GetPasteDtoResponse;
+import org.example.testtask1.controller.dto.main.SavePasteDtoRequest;
+import org.example.testtask1.controller.dto.main.SavePasteDtoResponse;
 import org.example.testtask1.entity.AccessRestriction;
 import org.example.testtask1.entity.PasteBox;
 import org.example.testtask1.exception.ElementNotFoundException;
@@ -61,6 +61,22 @@ public class PasteServiceImpl implements PasteService {
                 s.getAccessRestriction(),
                 LocalDateTime.now()));
         return new SavePasteDtoResponse( appConfig.getPasteApiUrl() + pasteBox.getHash());
+    }
+
+    @Override
+    public List<GetPasteDtoResponse> getAllWithAnyAccessRestriction() {
+        List<PasteBox> pasteBoxList = pasteRepository.findAll();
+        if (!pasteBoxList.isEmpty()) {
+            List<GetPasteDtoResponse> response = pasteBoxList
+                    .stream()
+                    .map(pasteBox -> new GetPasteDtoResponse(pasteBox.getPaste(),
+                            appConfig.getPasteApiUrl() + pasteBox.getHash()))
+                    .toList();
+            if (!response.isEmpty()) {
+                return response;
+            }
+        }
+        throw new ListNotFoundException();
     }
 
     private boolean isPasteAlive(PasteBox pasteBox) {
